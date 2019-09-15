@@ -3,6 +3,11 @@ var idWins = document.getElementById("idWins");
 var idCurrent = document.getElementById("idCurrent");
 var idRemaining = document.getElementById("idRemaining");
 var idGuessed = document.getElementById("idGuessed");
+var invalidSound = document.getElementById("invalidSound");
+var loseSound = document.getElementById("loseSound");
+var rightLetterSound = document.getElementById("rightLetterSound");
+var winSound = document.getElementById("winSound");
+var wrongLetterSound = document.getElementById("wrongLetterSound");
 var wins = 0;
 var remainingGuesses = 10;
 var guessedLetters = "";
@@ -16,7 +21,7 @@ var words = ["balor", "banshee", "basilisk", "beholder", "chimera", "cockatrice"
 // Randomly chooses a choice from the words array. This is the secret word.
 newWord();
 
-//
+// Initialize HTML
 idWins.textContent = "Wins: " + wins;
 idCurrent.textContent = "Current word: " + separateChars(currentWord);
 idRemaining.textContent = "Remaining guesses: " + remainingGuesses;
@@ -33,26 +38,37 @@ document.onkeyup = function(event)
 
     if(isValid(keyPressed)){
         if(hasChar(secretWord, keyPressed)){
-            currentWord = revealChars(secretWord, currentWord, keyPressed);
-            if(currentWord === secretWord){
-                wins++;
-                console.log("YOU WIN");
-                newWord();
+            if(hasChar(currentWord, keyPressed)){
+                console.log("Contains letter, already pressed");
+                invalidSound.play();
+            } else {
+                currentWord = revealChars(secretWord, currentWord, keyPressed);
+                if(currentWord === secretWord){
+                    wins++;
+                    console.log("YOU WIN");
+                    winSound.play();
+                    newWord();
+                } else rightLetterSound.play();
             }
         }
         else {
             if(hasChar(guessedLetters, keyPressed)){
                 console.log("Doesn't contain letter, already pressed");
+                invalidSound.play();
             } else {
                 remainingGuesses--;
                 guessedLetters += keyPressed;
                 if(remainingGuesses === 0){
                     console.log("YOU LOST");
+                    loseSound.play();
                     newWord();
-                }
+                } else wrongLetterSound.play();
             }
         }
-    } else console.log("Unvalid key pressed");
+    } else{
+        console.log("Unvalid key pressed");
+        invalidSound.play();
+    } 
 
     idWins.textContent = "Wins: " + wins;
     idCurrent.textContent = "Current word: " + separateChars(currentWord);

@@ -5,10 +5,25 @@ const sound = {
     right : document.getElementById("rightLetterSound"),
     wrong : document.getElementById("wrongLetterSound"),
     invalid : document.getElementById("invalidSound")};
-var idWins = document.getElementById("idWins");
-var idCurrent = document.getElementById("idCurrent");
-var idRemaining = document.getElementById("idRemaining");
-var idGuessed = document.getElementById("idGuessed");
+
+var wordEngine = {
+    ids : {
+        win : document.getElementById("idWins"),
+        current : document.getElementById("idCurrent"),
+        remaining : document.getElementById("idRemaining"),
+        guessed : document.getElementById("idGuessed")
+    },
+
+    displayHTML : function(){
+        wordEngine.ids.win.textContent = "Wins: " + wins;
+        wordEngine.ids.current.textContent = "Current word: " + separateChars(currentWord);
+        wordEngine.ids.remaining.textContent = "Remaining guesses: " + remainingGuesses;
+        wordEngine.ids.guessed.textContent = "Letters guessed: " + separateChars(guessedLetters);
+    }
+
+
+}
+
 var wins = 0;
 var remainingGuesses = 10;
 var guessedLetters = "";
@@ -19,14 +34,10 @@ var words = ["balor", "banshee", "basilisk", "beholder", "chimera", "cockatrice"
             "mimic", "minotaur", "nightmare", "ogre", "orc", "ooze", "owlbear", "salamander", "satyr", "shadow", "skeleton", "spider", 
             "swarm", "treant", "troll", "unicorn", "vampire", "werewolf", "worg", "wyvern", "yeti", "zombie"];
 
-//Initialize secret and current words
+//Initialize secret and current words, and HTML
 newWord();
+wordEngine.displayHTML();
 
-// Initialize HTML
-idWins.textContent = "Wins: " + wins;
-idCurrent.textContent = "Current word: " + separateChars(currentWord);
-idRemaining.textContent = "Remaining guesses: " + remainingGuesses;
-idGuessed.textContent = "Letters guessed: " + separateChars(guessedLetters);
 
 //Key Press
 document.onkeyup = function(event) 
@@ -71,10 +82,7 @@ document.onkeyup = function(event)
         sound.invalid.play();
     } 
 
-    idWins.textContent = "Wins: " + wins;
-    idCurrent.textContent = "Current word: " + separateChars(currentWord);
-    idRemaining.textContent = "Remaining guesses: " + remainingGuesses;
-    idGuessed.textContent = "Letters guessed: " + separateChars(guessedLetters);
+    wordEngine.displayHTML();
 }
 
 function isValid(letter){
@@ -83,7 +91,7 @@ function isValid(letter){
     for (let i = 0 ; i < alphabet.length ; i++){
         if(letter === alphabet[i]){
             return true;
-        } 
+        }
     }
     return false;
 }

@@ -2,25 +2,64 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Word Guess Game</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+    <script src="https://kit.fontawesome.com/593153c2d7.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Turret+Road&display=swap" rel="stylesheet"> 
 </head>
 
 <body>
-    
-    <div id="game">
-        <p>Press any letter to get started!</p>
-        <p id="idWins"></p>
-        <p id="idCurrent"></p>
-        <p id="idRemaining"></p>
-        <p id="idGuessed"></p>
+    <nav class="navbar navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="https://evolatum.github.io/Portfolio/portfolio.html">
+            <i class="fad fa-chevron-left d-inline-block align-middle" id="backButton" alt="Go back"></i>
+            Back to portfolio
+        </a>
+        <span class="navbar-text">
+            Santiago Martinez Vara Ortiz - 19/09/19
+        </span>
+    </nav>
+
+
+    <div class="container" id="mainContent">
+        <div class="row">
+            <div class="col-lg">
+                <div class="jumbotron bg-dark text-light">
+                    <div class="container">
+                        <h1 class="display-4">Hangman - GALAXY edition</h1>
+                        <p class="lead">Press any letter to get started!</p>
+                        <hr class="my-4 bg-light">
+                        <p id="idWins"></p>
+                        <p id="idCurrent"></p>
+                        <p id="idRemaining"></p>
+                        <p id="idGuessed"></p>
+                    </div>
+                    <div class="card cardStyle" id="idCard" style="width: 18rem;">
+                        <img src="#" class="card-img-top" id="idCardImage" alt="Card image">
+                        <div class="card-body">
+                            <h5 class="card-title" id="idCardTitle"></h5>
+                            <p class="card-text text-light" id="idCardText"></p>
+                            <a href="#" class="card-link" id="idCardLink">More Info!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <audio src="assets/sounds/invalid.wav" id="invalidSound" preload="auto"></audio>
-    <audio src="assets/sounds/lose.wav" id="loseSound" preload="auto"></audio>
-    <audio src="assets/sounds/rightLetter.wav" id="rightLetterSound" preload="auto"></audio>
-    <audio src="assets/sounds/win.wav" id="winSound" preload="auto"></audio>
-    <audio src="assets/sounds/wrongLetter.wav" id="wrongLetterSound" preload="auto"></audio>
-    <script src="assets/javascript/game.js"></script>
+    <div>
+        <audio src="assets/sounds/invalid.wav" id="invalidSound" preload="auto"></audio>
+        <audio src="assets/sounds/lose.wav" id="loseSound" preload="auto"></audio>
+        <audio src="assets/sounds/rightLetter.wav" id="rightLetterSound" preload="auto"></audio>
+        <audio src="assets/sounds/win.wav" id="winSound" preload="auto"></audio>
+        <audio src="assets/sounds/wrongLetter.wav" id="wrongLetterSound" preload="auto"></audio>
+        <script src="assets/javascript/game.js"></script>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </div>
 </body>
 </html>

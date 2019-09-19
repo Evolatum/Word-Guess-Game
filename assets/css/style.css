@@ -22,6 +22,28 @@ body{
     display: none;
 }
 
+#idCardImage{
+    width: inherit;
+}
+
 .cardStyle{
     background-color: rgb(49, 45, 70);
+}
+
+#darkNav{
+    background-color: rgb(37, 21, 46);
+}
+
+#nameShort{
+    display: none;
+}
+
+@media (max-width: 767px){
+    #nameLong{
+        display: none;
+    }
+
+    #nameShort{
+        display: inline;
+    }
 }

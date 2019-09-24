@@ -80,9 +80,7 @@ var wordEngine = {
     },
 
     showCard : function(secret){
-        wordEngine.pop = true;
-        wordEngine.ids.card.main.style.display = "block";
-        wordEngine.ids.card.back.style.display = "block";
+        wordEngine.popUpShow();
         wordEngine.ids.card.img.src = wordEngine.galaxy[secret].src;
         wordEngine.ids.card.title.textContent = capitalize(wordEngine.galaxy[secret].title);
         wordEngine.ids.card.text.textContent = wordEngine.galaxy[secret].text;
@@ -90,13 +88,21 @@ var wordEngine = {
     },
 
     loseCard : function(){
-        wordEngine.pop = true;
-        wordEngine.ids.card.main.style.display = "block";
-        wordEngine.ids.card.back.style.display = "block";
+        wordEngine.popUpShow();
         wordEngine.ids.card.img.src = "https://i.redd.it/zxlbymzytbb21.jpg";
         wordEngine.ids.card.title.textContent = "You lost!";
         wordEngine.ids.card.text.textContent = "Try again...";
         wordEngine.ids.card.link.href = "https://www.psychologytoday.com/us/blog/coaching-and-parenting-young-athletes/201405/how-deal-the-agony-defeat";
+    },
+
+    popUpShow : function(){
+        wordEngine.pop = true;
+        wordEngine.ids.card.back.style.display = "block";
+    },
+
+    popUpHide : function(){
+        wordEngine.pop = false;
+        wordEngine.ids.card.back.style.display = "none";
     },
     
     revealChars : function(secret, current, letter){
@@ -138,7 +144,6 @@ var wordEngine = {
                     this.currentWord = this.revealChars(this.galaxy[this.secretWord].title, this.currentWord, key);
                     if(this.currentWord === this.galaxy[this.secretWord].title){
                         this.wins++;
-                        console.log("YOU WIN");
                         this.showCard(this.secretWord);
                         sound.win.play();
                         this.newWord();
@@ -153,7 +158,6 @@ var wordEngine = {
                     this.remainingGuesses--;
                     this.guessedLetters += key;
                     if(this.remainingGuesses === 0){
-                        console.log("YOU LOST");
                         this.loseCard();
                         sound.lose.play();
                         this.newWord();
@@ -187,9 +191,7 @@ document.onkeyup = function(event)
 
 //Click
 document.getElementById("closePopUp").addEventListener("click", function(){
-    wordEngine.pop = false;
-    wordEngine.ids.card.main.style.display = "none";
-    wordEngine.ids.card.back.style.display = "none";
+    wordEngine.popUpHide();
     console.log("Closed Pop-up");
 });
 

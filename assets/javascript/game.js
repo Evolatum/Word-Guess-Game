@@ -13,6 +13,7 @@ var wordEngine = {
     guessedLetters : "",
     secretWord : 0,
     currentWord : "",
+    pop: false,
     ids : {
         win : document.getElementById("idWins"),
         current : document.getElementById("idCurrent"),
@@ -23,10 +24,11 @@ var wordEngine = {
             img : document.getElementById("idCardImage"),
             title : document.getElementById("idCardTitle"),
             text : document.getElementById("idCardText"),
-            link : document.getElementById("idCardLink")
+            link : document.getElementById("idCardLink"),
+            back : document.getElementById("idPopUpDarken")
         }
     },
-
+    
     galaxy : [
         {title: "sun", text: "Our very own star!", src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/The_Sun_by_the_Atmospheric_Imaging_Assembly_of_NASA%27s_Solar_Dynamics_Observatory_-_20100819.jpg/628px-The_Sun_by_the_Atmospheric_Imaging_Assembly_of_NASA%27s_Solar_Dynamics_Observatory_-_20100819.jpg", link: "https://en.wikipedia.org/wiki/Sun"},
         {title: "moon", text: "It's a satellite!", src: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/631px-FullMoon2010.jpg", link:"https://en.wikipedia.org/wiki/Moon"},
@@ -78,7 +80,9 @@ var wordEngine = {
     },
 
     showCard : function(secret){
+        wordEngine.pop = true;
         wordEngine.ids.card.main.style.display = "block";
+        wordEngine.ids.card.back.style.display = "block";
         wordEngine.ids.card.img.src = wordEngine.galaxy[secret].src;
         wordEngine.ids.card.title.textContent = capitalize(wordEngine.galaxy[secret].title);
         wordEngine.ids.card.text.textContent = wordEngine.galaxy[secret].text;
@@ -86,7 +90,9 @@ var wordEngine = {
     },
 
     loseCard : function(){
+        wordEngine.pop = true;
         wordEngine.ids.card.main.style.display = "block";
+        wordEngine.ids.card.back.style.display = "block";
         wordEngine.ids.card.img.src = "https://i.redd.it/zxlbymzytbb21.jpg";
         wordEngine.ids.card.title.textContent = "You lost!";
         wordEngine.ids.card.text.textContent = "Try again...";
@@ -170,10 +176,22 @@ wordEngine.displayHTML();
 document.onkeyup = function(event) 
 {
     // Calls game engine with key pressed
-    console.log("Key pressed: " + event.key.toLowerCase());
-    wordEngine.play(event.key.toLowerCase());
-    wordEngine.displayHTML();
+    if(wordEngine.pop){
+        console.log("Pop-up open, close to continue playing");
+    } else{
+        console.log("Key pressed: " + event.key.toLowerCase());
+        wordEngine.play(event.key.toLowerCase());
+        wordEngine.displayHTML();
+    }
 }
+
+//Click
+document.getElementById("closePopUp").addEventListener("click", function(){
+    wordEngine.pop = false;
+    wordEngine.ids.card.main.style.display = "none";
+    wordEngine.ids.card.back.style.display = "none";
+    console.log("Closed Pop-up");
+});
 
 function isValid(letter){
     const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];

@@ -10,7 +10,7 @@ body{
 }
 
 #backButton{
-    font-size: 1.5em;
+    font-size: 1.8em;
     color: rgb(159, 143, 245);
 }
 
@@ -18,8 +18,33 @@ body{
     margin-top: 6em;
 }
 
+#closePopUp{
+    font-size: 1.5em;
+    color: rgb(159, 143, 245);
+    position: absolute;
+    top:.2rem;
+    right:.2rem;
+}
+
+#closePopUp:hover, #closePopUp:active{
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+}
+
+#idPopUpDarken{
+    position:fixed;
+    top:0;
+    margin:0;
+    width: 99.99%;
+    height: 99.99%;
+    background-color: rgba(0,0,0,0.6);
+    z-index: 1040;
+    display:none;
+}
+
 #idCard{
     display: none;
+    margin:auto;
 }
 
 #idCardImage{
@@ -28,6 +53,7 @@ body{
 
 .cardStyle{
     background-color: rgb(49, 45, 70);
+    margin:0;
 }
 
 #darkNav{

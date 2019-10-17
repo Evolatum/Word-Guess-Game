@@ -5,15 +5,6 @@ body{
     font-family: 'Turret Road', cursive;
 }
 
-.navbar{
-    font-family: 'Montserrat', sans-serif;
-}
-
-#backButton{
-    font-size: 1.8em;
-    color: rgb(159, 143, 245);
-}
-
 #mainContent{
     margin-top: 6em;
 }
@@ -57,18 +48,4 @@ body{
 
 #darkNav{
     background-color: rgb(37, 21, 46);
-}
-
-#nameShort{
-    display: none;
-}
-
-@media (max-width: 767px){
-    #nameLong{
-        display: none;
-    }
-
-    #nameShort{
-        display: inline;
-    }
 }
